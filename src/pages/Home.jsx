@@ -44,7 +44,7 @@ function Home() {
             </section>
             <section  >
             {!user ? (
-                <div className=" content-centers place-content-center py-8">
+                <div className=" content-centers place-content-center py-8 text-slate-200">
                     <Link to="/login">
                         <button className="text-center btn btn-primary hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Login</button>
                     </Link>

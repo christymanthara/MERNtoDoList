@@ -18,11 +18,12 @@ function Login() {
     };
 
     return (
-        <div>
+        <div className='register-container text-slate-200 bg-gradient-to-r from-purple-500 to-pink-500' >
+            
             <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+            <form onSubmit={handleSubmit}className="register-form bg-transparent font-sans text-slate-200 ">
+                <input type="email" className="hover:font-semibold" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+                <input type="password" className="hover:font-semibold" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 <button type="submit">Login</button>
             </form>
         </div>

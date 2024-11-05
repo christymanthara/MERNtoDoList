@@ -39,12 +39,13 @@ function Register() {
     };
 
     return (
-        <div className="register-container">
+        <div className=" register-container bg-gradient-to-r from-sky-500 to-indigo-500">
             <h1>Register</h1>
-            <form onSubmit={handleSubmit} className="register-form">
+            <form onSubmit={handleSubmit} className="register-form bg-transparent text-slate-200">
                 <label>
                     Name:
                     <input 
+                        className="hover:font-semibold"
                         type="text" 
                         value={name} 
                         onChange={(e) => setName(e.target.value)} 
@@ -55,6 +56,7 @@ function Register() {
                 <label>
                     Surname:
                     <input 
+                        className="hover:font-semibold"
                         type="text" 
                         value={surname} 
                         onChange={(e) => setSurname(e.target.value)} 
@@ -65,6 +67,7 @@ function Register() {
                 <label>
                     Age:
                     <input 
+                        className="hover:font-semibold"
                         type="number" 
                         value={age} 
                         onChange={(e) => setAge(e.target.value)} 
@@ -77,6 +80,7 @@ function Register() {
                 <label>
                     Email:
                     <input 
+                        className="hover:font-semibold"
                         type="email" 
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)} 
@@ -87,6 +91,7 @@ function Register() {
                 <label>
                     Password:
                     <input 
+                        className="hover:font-semibold"
                         type="password" 
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)} 
@@ -97,6 +102,7 @@ function Register() {
                 <label>
                     Profile Picture:
                     <input 
+                        className="hover:font-semibold"
                         type="file" 
                         onChange={handleImageUpload} 
                         accept="image/*" 
