@@ -1,0 +1,82 @@
+[
+    {
+        "userName": "Alice",
+        "todos": [
+            { "id": 1, "text": "Buy groceries" },
+            { "id": 2, "text": "Schedule dentist appointment" },
+            { "id": 3, "text": "Clean the garage" }
+        ]
+    },
+    {
+        "userName": "Bob",
+        "todos": [
+            { "id": 4, "text": "Finish React project" },
+            { "id": 5, "text": "Book vacation" },
+            { "id": 6, "text": "Renew library books" }
+        ]
+    },
+    {
+        "userName": "Charlie",
+        "todos": [
+            { "id": 7, "text": "Pay bills" },
+            { "id": 8, "text": "Go for a run" },
+            { "id": 9, "text": "Read a new book" }
+        ]
+    },
+    {
+        "userName": "Diana",
+        "todos": [
+            { "id": 10, "text": "Meal prep for the week" },
+            { "id": 11, "text": "Organize workspace" },
+            { "id": 12, "text": "Start learning French" }
+        ]
+    },
+    {
+        "userName": "Ethan",
+        "todos": [
+            { "id": 13, "text": "Grocery shopping" },
+            { "id": 14, "text": "Prepare presentation" },
+            { "id": 15, "text": "Work on side project" }
+        ]
+    },
+    {
+        "userName": "Fiona",
+        "todos": [
+            { "id": 16, "text": "Water the plants" },
+            { "id": 17, "text": "Update resume" },
+            { "id": 18, "text": "Organize files" }
+        ]
+    },
+    {
+        "userName": "George",
+        "todos": [
+            { "id": 19, "text": "Call family" },
+            { "id": 20, "text": "Fix the car" },
+            { "id": 21, "text": "Declutter closet" }
+        ]
+    },
+    {
+        "userName": "Hannah",
+        "todos": [
+            { "id": 22, "text": "Take a yoga class" },
+            { "id": 23, "text": "Plan a weekend trip" },
+            { "id": 24, "text": "Cook dinner for friends" }
+        ]
+    },
+    {
+        "userName": "Isaac",
+        "todos": [
+            { "id": 25, "text": "Complete coding challenge" },
+            { "id": 26, "text": "Review project proposal" },
+            { "id": 27, "text": "Attend networking event" }
+        ]
+    },
+    {
+        "userName": "Julia",
+        "todos": [
+            { "id": 28, "text": "Practice guitar" },
+            { "id": 29, "text": "Paint a landscape" },
+            { "id": 30, "text": "Exercise for 30 minutes" }
+        ]
+    }
+]
