@@ -32,7 +32,7 @@ function Home() {
       <img
         alt=""
         src="https://images.unsplash.com/photo-1617195737496-bc30194e3a19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-        className="absolute inset-0 h-auto w-full object-cover opacity-80"
+        className="absolute inset-0 h-full w-full object-cover opacity-80 z-0"
       />
       <div className="hidden lg:relative lg:block lg:p-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-auto h-full"> 
@@ -58,7 +58,7 @@ function Home() {
         </p>
       </div>
             </section>
-            <section>
+            <section className='"relative z-10"'>
             {!user ? (
                 <div className="content-centers place-content-center py-8 text-slate-200">
                     <Link to="/login">
