@@ -31,6 +31,8 @@ function Register() {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
+            }).then(result => {console.log(result)
+                navigate("/login") //navigating to login page upon successful registration
             });
             login(response.data);  // Log the user in after successful registration
         } catch (error) {
