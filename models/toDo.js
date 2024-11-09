@@ -28,7 +28,13 @@ const toDoSchema = new mongoose.Schema({
   completedOn:{
     type: Date,
     default: null
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User', // Reference to the User model
+    required: true
   }
+
 })
 
 
