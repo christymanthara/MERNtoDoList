@@ -22,17 +22,10 @@ router.post('/register', async(req, res) => {
                 image, // feedback wit the response
             },
         });
-
-
     } catch (error) {
         res.status(400).json({error: error.message})
-        
     }
     res.json({mssg: 'POST a new user'});
-
-
-
-    
 });
 
 
