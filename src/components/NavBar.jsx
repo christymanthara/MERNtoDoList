@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState,useContext } from "react";
 import { AuthContext } from '../context/AuthContext';
+import axios from "axios";
 // import { FaHome } from "react-icons/fa";
 
 
@@ -10,11 +11,29 @@ const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();    
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        // Add your login logic here, e.g., call a login API
-        console.log("Logging in with:", username, password);
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/login', {
+                username,
+                password,
+            });
+    
+            const { token, user } = response.data;
+    
+            // Store the token in localStorage or context for authentication persistence
+            localStorage.setItem('token', token);
+    
+            // Update the AuthContext with the logged-in user
+            login(user);  // Assuming you have a `login` function in AuthContext to set the user
+    
+            console.log("User logged in:", user);
+            navigate('/login');
+        } catch (error) {
+            console.error("Login failed:", error.response ? error.response.data.message : error.message);
+        }
     };
 
     return (

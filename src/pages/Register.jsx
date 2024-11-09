@@ -27,7 +27,7 @@ function Register() {
         formData.append('image', image);
 
         try {
-            const response = await axios.post('http://localhost:5000/register', formData, {
+            const response = await axios.post('http://localhost:5000/api/auth/register', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -108,7 +108,7 @@ function Register() {
                         type="file" 
                         onChange={handleImageUpload} 
                         accept="image/*" 
-                        required 
+            
                     />
                 </label>
 

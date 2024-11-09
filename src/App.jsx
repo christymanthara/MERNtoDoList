@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import UserTodos from './pages/UserTodos';
 import ProtectedRoute from './components/ProtectedRoute';
-import Navbar from './components/NavBar';
+// import Navbar from './components/NavBar';
 
 function App() {
   const [count, setCount] = useState(0)

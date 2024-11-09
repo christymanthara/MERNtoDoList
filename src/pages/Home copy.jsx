@@ -27,26 +27,17 @@ function Home() {
       console.log("Home component mounted");
       apiCall();
       const fetchToDos = async () => {
-      const response = await fetch('http://localhost:5000/api/todos')
+      const response = await fetch('http://localhost:5000/api/todos/')
       const json = await response.json()
 
       if(response.ok)
       {
         console.log("fetched the todos");
         settoDos.json
-        console.log(settoDos.json) 
       }
-      else {
-        console.error("Failed to fetch todos:", json);
-    }
     }
     fetchToDos()
     }, []);
-
-    useEffect(() => {
-      console.log("Updated toDos:", toDos);
-  }, [toDos]);
-      
 
     return (
       
@@ -76,19 +67,12 @@ function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-auto h-full"> 
         {
         
-        <div>
-        {toDos === null ? ( // Check if toDos is null
-            <p>Value of toDos is null</p>
-        ) : (
-            toDos.length > 0 ? ( // Check if toDos has items
-                toDos.map((todo) => (
-                    <p key={todo._id}>{todo.task}</p>
-                ))
-            ) : (
-                <p>No todos available</p> // Handle case where toDos is an empty array
-            )
-        )}
-    </div>}
+        toDos && toDos.map((user, index) => (
+                    <Card 
+                    key={index} 
+                    userName={user.userName} 
+                    todos={user.todos} />
+                ))}
 {/* //checking */}
                 {/* toDos && toDos.map((toDo) => (
                   <toDoDetails key = {toDo._id} workout = {workout} />

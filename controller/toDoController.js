@@ -1,4 +1,5 @@
 import ToDo from '../models/toDo.js';
+import User from '../models/user.js'
 import {mongoose} from 'mongoose'
 
 //get all toDos
@@ -8,7 +9,7 @@ const getToDos = async(req,res) => {
     res.status(200).json(toDos)
 }
 
-//get a single toDos
+//get a single toDos //not necessary
 
 const getToDo = async(req,res) => {
     const {id} = req.params
@@ -29,20 +30,29 @@ const getToDo = async(req,res) => {
 
 //create a toDo
 const createToDo = async(req, res) => {
-    const { task,description,deadline,createdAt,completed, completedOn } = req.body;
-
+    const { task,description,deadline,createdAt,completed, completedOn, userId } = req.body;
+    if (!userId) {
+        return res.status(400).json({ error: "User ID is required" });
+    }
     //add todo to db
     try {
-        const toDo = await ToDo.create({task, description, deadline, createdAt, completed, completedOn});
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+        
+        const toDo = await ToDo.create({task, description, deadline, createdAt, completed, completedOn, userId});
         res.status(201).json({
-            message: 'New task Created',
+            message: `New task Created for ${user.Name}`,
             toDo: {
                 task, 
                 description, 
                 deadline, 
                 createdAt, 
                 completed, 
-                completedOn 
+                completedOn,
+                userId 
             },
         });
     } catch (error) {
@@ -65,7 +75,6 @@ const deleteToDo = async (req,res) => {
         return res.status(400).json({error: "No such task to delete"});
     }
     res.status(200).json(toDo);
-
 
 }
 
