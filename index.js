@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import 'dotenv/config';
 const app = express();
 
 // Middleware setup
@@ -37,8 +39,17 @@ app.post('/',(req,res) => {
 
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
 
+
+// connect to db
+mongoose.connect(process.env.MONGO_URI)
+.then(()=> {
+    app.listen(PORT, () => {
+        console.log(`Connected to DB & Server is running on port ${PORT}`);
+    });
+    
+})
+.catch((error)=>{
+    console.log(error)
+})
 

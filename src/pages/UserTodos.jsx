@@ -65,7 +65,7 @@ function UserTodos() {
                     placeholder="New to-do"
                     className="border rounded p-2"
                 />
-                <button onClick={handleAddTodo} className="bg-blue-500 text-white p-2 rounded ml-2">Add</button>
+                <button onClick={handleAddTodo} className="bg-blue-500 text-white p-2 rounded ml-2">Add Task</button>
             </div>
 
             {/* Display User's To-Dos */}
@@ -79,7 +79,7 @@ function UserTodos() {
                             className="border rounded p-2 flex-grow"
                         />
                         <button onClick={() => handleDeleteTodo(todo.id)} className="bg-red-500 text-white p-2 rounded ml-2">
-                            Delete
+                            Delete Task
                         </button>
                     </li>
                 ))}

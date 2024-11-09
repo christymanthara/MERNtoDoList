@@ -27,7 +27,7 @@ function Home() {
 
     return (
         <section className="bg-white dark:bg-gray-900">
-        <div className="grid min-h-screen grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid min-h-screen grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6">
         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-2 lg:h-full xl:col-span-6">
       <img
         alt=""
@@ -58,7 +58,7 @@ function Home() {
         </p>
       </div>
             </section>
-            <section className='"relative z-10"'>
+            <div className='"relative z-10"'>
             {!user ? (
                 <div className="content-centers place-content-center py-8 text-slate-200">
                     <Link to="/login">
@@ -74,7 +74,7 @@ function Home() {
                     <button onClick={logout} className="btn btn-danger">Logout</button>
                 </>
             )}
-            </section>
+            </div>
             
         </div>
         </section>
