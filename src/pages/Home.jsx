@@ -5,6 +5,7 @@ import '../App.css';
 import axios from 'axios';
 import todosData from '../../src/assets/sampleTodos.json'; //sample todo for the checks
 import Card from '../components/Card';
+// import Card from '../components/CardList';
 import Navbar from '../components/NavBar';
 // import toDoDetails from '../components/toDoDetails';
 
@@ -21,28 +22,58 @@ const apiCall = () => {
 
 function Home() {
     const { user, logout } = useContext(AuthContext); // Access the logged-in user from context
-    const [toDos, settoDos] = useState(null)
+    const [toDos, setToDos] = useState(null);
+    const [users, setUsers] = useState([]);
+    const [todosByUser, setToDosByUser] = useState([]);
 
+    //fetching the todos
     useEffect(() => {
       console.log("Home component mounted");
       apiCall();
-      const fetchToDos = async () => {
-      const response = await fetch('http://localhost:5000/api/todos')
-      const json = await response.json()
-
-      if(response.ok)
-      {
-        console.log("fetched the todos");
-        settoDos.json
-        console.log(settoDos.json) 
-      }
-      else {
-        console.error("Failed to fetch todos:", json);
-    }
-    }
-    fetchToDos()
+  
+      const fetchToDosAndUsers = async () => {
+        try {
+          const todosResponse = await fetch('http://localhost:5000/api/todos/'); // or we can use axios.get for the same
+          const usersResponse = await axios.get('http://localhost:5000/api/auth/users');
+          
+          // Set the users
+          setUsers(usersResponse.data);
+  
+          // Set the todos if the response is ok
+          if (todosResponse.ok) {
+            const todosData = await todosResponse.json();
+            console.log("Fetched todos:", todosData);
+            setToDos(todosData);
+          } else {
+            console.error("Failed to fetch todos.");
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+      fetchToDosAndUsers();
     }, []);
 
+    useEffect(() => {
+      if (toDos && users.length > 0) {
+          const mappedTodos = users.map((user) => ({
+              userName: `${user.Name} ${user.Surname}`,
+              userId: user._id,
+              todos: toDos.filter((todo) => todo.userId === user._id)
+          }));
+          setToDosByUser(mappedTodos);
+      }
+  }, [toDos, users]);
+
+    const getUserName = (userId) => {
+      const user = users.find((user) => user._id === userId);
+      return user ? `${user.Name} ${user.Surname}` : "Unknown User";
+  };
+
+    // console.log(getUserName("672fd4582d09749f2682ec56")); //checking if user values have been fetched // working
+
+
+// displaying the fetched values
     useEffect(() => {
       console.log("Updated toDos:", toDos);
   }, [toDos]);
@@ -75,24 +106,20 @@ function Home() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-auto h-full"> 
         {
-        
-        <div>
-        {toDos === null ? ( // Check if toDos is null
-            <p>Value of toDos is null</p>
-        ) : (
-            toDos.length > 0 ? ( // Check if toDos has items
-                toDos.map((todo) => (
-                    <p key={todo._id}>{todo.task}</p>
-                ))
-            ) : (
-                <p>No todos available</p> // Handle case where toDos is an empty array
-            )
-        )}
-    </div>}
-{/* //checking */}
-                {/* toDos && toDos.map((toDo) => (
-                  <toDoDetails key = {toDo._id} workout = {workout} />
-                ))} */}
+            <div>
+                {todosByUser.length > 0 ? (
+                        todosByUser.map((userTodos) => (
+                          <Card
+                            key={userTodos.userId} // Use userId for a unique key
+                            userName={userTodos.userName}
+                            todos={userTodos.todos}
+                          />
+                        ))
+                      ) : (
+                        <p>No todos available</p>
+                      )}
+            </div>
+       }
         </div>
       </div>
             </section>            

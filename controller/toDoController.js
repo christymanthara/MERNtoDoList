@@ -5,8 +5,13 @@ import {mongoose} from 'mongoose'
 //get all toDos
 
 const getToDos = async(req,res) => {
-    const toDos = await ToDo.find({}).sort({createdAt: -1})
-    res.status(200).json(toDos)
+    try {
+        const toDos = await ToDo.find({}).sort({createdAt: -1});
+        res.status(200).json(toDos);        
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+    
 }
 
 //get a single toDos //not necessary

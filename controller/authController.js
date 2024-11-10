@@ -10,6 +10,17 @@ const getAllUsers = async(req,res) => {
     res.status(200).json(users)
 }
 
+const getUsers = async(req,res) => {
+    try {
+        const users = await User.find({},'Name Surname _id');
+    res.status(200).json(users);
+        
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+    
+}
+
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
@@ -71,5 +82,6 @@ const registerUser = async(req,res) => {
 export {
     loginUser,
     registerUser,
-    getAllUsers
+    getAllUsers,
+    getUsers
 }

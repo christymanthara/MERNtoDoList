@@ -7,10 +7,11 @@ const Card = ({ userName, todos }) => {
             <h2 className="font-bold text-lg mb-2">{userName}'s To-Do List</h2>
             <div>
             {console.log(userName)}
+            {console.log(todos)}
             <ul>
                 {todos.map((todo) => (
-                    <li key={todo.id} className="border-b border-gray-200 py-1">
-                        {todo.text}
+                    <li key={todo._id} className="border-b border-gray-200 py-1">
+                        {todo.task}
                     </li>
                 ))}
             </ul>
