@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState,useContext } from "react";
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext  } from '../context/AuthContext';
 import axios from "axios";
 // import { FaHome } from "react-icons/fa";
 
@@ -8,7 +8,7 @@ import axios from "axios";
 
 
 const Navbar = () => {
-    const { user, logout } = useContext(AuthContext);
+    const { user,token,login, logout } = useContext(AuthContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();    
@@ -17,8 +17,8 @@ const Navbar = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:5000/api/auth/login', {
-                username,
-                password,
+                Email:username,
+                Password:password,
             });
     
             const { token, user } = response.data;
@@ -27,7 +27,7 @@ const Navbar = () => {
             localStorage.setItem('token', token);
     
             // Update the AuthContext with the logged-in user
-            login(user);  // Assuming you have a `login` function in AuthContext to set the user
+            login(user, token);  // Assuming you have a `login` function in AuthContext to set the user
     
             console.log("User logged in:", user);
             navigate('/login');

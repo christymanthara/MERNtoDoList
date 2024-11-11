@@ -3,23 +3,6 @@ import {mongoose} from 'mongoose'
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const previoushash = '$2b$10$wBu7gZGpfQXI/7WkU8HZfO6uRzoFhnDOaJf4iBbbVl7/D7LbQO7mC'
-const password = 'securePassword123';
-const saltRounds = 10; // Number of rounds to hash
-
-bcrypt.hash(password, saltRounds, (err, hash) => {
-    if (err) {
-        console.error('Error generating hash:', err);
-    } else {
-        console.log('Hashed password:', hash);
-    }
-});
-
-async function bcheck() {
-    const gotpass = await bcrypt.compare(password, previoushash);
-console.log('value got',gotpass);
-}
-bcheck();
 
 
 const getAllUsers = async(req,res) => {
