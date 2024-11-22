@@ -1,5 +1,5 @@
-# Use Node.js LTS version as the base image
-FROM node:16
+# Use a Node.js base image
+FROM node:18
 
 # Set the working directory
 WORKDIR /usr/src/app
@@ -8,13 +8,16 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --force
 
-# Copy the rest of the backend code
+# Copy the rest of the application code
 COPY . .
 
-# Expose the port your backend runs on
+# Rebuild bcrypt for the correct architecture
+RUN npm rebuild bcrypt --build-from-source
+
+# Expose the backend port (e.g., 5000)
 EXPOSE 5000
 
-# Start the backend
+# Command to run the app
 CMD ["npm", "start"]
